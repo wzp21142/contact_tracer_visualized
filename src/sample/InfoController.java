@@ -3,14 +3,11 @@ package sample;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.ResourceBundle;
@@ -68,10 +65,10 @@ public class InfoController implements Initializable {
         String[] PersonList=list[index].toString().split("\n");//分离出每个人的信息
         String[] PersonList_leave=list[index+8].toString().split("\n");
         for(int i=0;i<PersonList.length;i++) {
-            String[] tempStringArrive = PersonList[i].toString().split("-");//以-为界,分开时间与个人信息
+            String[] tempStringArrive = PersonList[i].split("-");//以-为界,分开时间与个人信息
             String[] tempString2 = tempStringArrive[1].split(" ");
             //tempString2[3] = tempString2[3].substring(0, tempString2[3].length() - 2);
-            String tempLeavetime = list[index+8].findPersonInfo(tempString2[3]).toString().split("-")[0];
+            String tempLeavetime = list[index + 8].findPersonbyPhone(tempString2[3]).toString().split("-")[0];
             temp.append(tempString2[0]+" "+tempString2[1]+" "+tempString2[2]+" "+tempString2[3]+" "+tempString2[4]+" "+tempString2[5]+" "+tempStringArrive[0]+" "+tempLeavetime+"\n");
         }
         //System.out.println(temp);
@@ -81,7 +78,7 @@ public class InfoController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            setTableColumns(tracer_logic.readInfo(),Main.getButtonName());
+            setTableColumns(tracer_logic.getSL(), Main.getButtonName());
         } catch (ParseException e) {
             e.printStackTrace();
         }

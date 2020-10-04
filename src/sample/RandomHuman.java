@@ -18,15 +18,15 @@ public class RandomHuman {
     }
 
     private static String calTime(int a) {
-        if (a + 300 >= 1440)//对在每个地点的时间尽可能进行控制
-            a = getNum(a, 1440);
+        if (a + 300 >= 1440)//对在每个地点的时间尽可能进行控制在合理范围,此处规定为20~300分钟内
+            a = getNum(a + 20, 1440);
         else
-            a = getNum(a, a + 300);
-        String temp = String.valueOf((int) a / 60);
+            a = getNum(a + 20, a + 300);
+        String temp = String.valueOf(a / 60);
         String hour = (temp.length() > 1) ? temp : "0" + temp;
         temp = String.valueOf(a % 60);
         String minute = (temp.length() > 1) ? temp : "0" + temp;
-        return String.valueOf(a) + "," + hour + ":" + minute;
+        return a + "," + hour + ":" + minute;
     }
 
     private static String getTel() {
@@ -61,7 +61,7 @@ public class RandomHuman {
     private static String getRoad() {
         int index = getNum(0, road.length - 1);
         String first = road[index];
-        String second = String.valueOf(getNum(11, 150)) + "号";
+        String second = getNum(11, 150) + "号";
         return first + second;
     }
 
@@ -77,6 +77,7 @@ public class RandomHuman {
             String arrive_time = temp[1];
             temp = calTime(a).split(",");
             a = Integer.parseInt(temp[0]);
+            if (a >= 1440) break;
             String leave_time = temp[1];
             if (arrive_time.equals(leave_time)) break;//如果起止时间都随机到了24:00,则一天结束,不再继续生成地点
 
@@ -102,18 +103,24 @@ public class RandomHuman {
     }
 
     public static void main(String[] args) throws IOException {
-        File file = new File("1日.txt");
-        if (!file.exists()) {
-            file.createNewFile();
-        }
-        FileWriter fileWriter = new FileWriter(file.getName());
-        fileWriter.write("");//清空已有文本
-        fileWriter.close();
-        FileWriter fileWriter2 = new FileWriter(file.getName(),true);
-        for (int i = 0; i < 500; i++) {
-            fileWriter2.write(new RandomHuman().getInfo().toString());//清空已有文本
-        }
+        for (int j = 0; j < 5; j++) {
+            File file = new File((j + 1) + "日.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fileWriter = new FileWriter(file.getName());
+            fileWriter.write("");//清空已有文本
+            fileWriter.close();
+            FileWriter fileWriter2 = new FileWriter(file.getName(), true);
+            for (int i = 0; i < 500; i++) {
+                String temp = new RandomHuman().getInfo().toString();
+                if (i == 499)
+                    temp = temp.replaceAll("\n", "");
+                fileWriter2.write(temp);
+                fileWriter2.flush();
+            }
 
+        }
 
         System.out.println("Done");
     }
