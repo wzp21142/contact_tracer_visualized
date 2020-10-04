@@ -125,9 +125,10 @@ public class SkipList <T>{//跳表类
                 p = p.down;
         }
         p = p.right;
+        if (p.time == TAIL_KEY) return null;
         while (p.right.time != TAIL_KEY) {//不断向右检索直到检索到边界
             String temp = (p.getValue().toString().split(" ")[5]);
-            if (Integer.parseInt(temp) > 0)
+            if (Integer.parseInt(temp) > 1)
                 break;
             p = p.right;
             if (p.right.time == TAIL_KEY)

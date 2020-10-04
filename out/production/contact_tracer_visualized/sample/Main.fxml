@@ -9,14 +9,14 @@
 
 <AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Main">
    <children>
-      <Button id="公寓1" layoutX="75.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="公寓1" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="150.0" />
-      <Button id="地铁" layoutX="85.0" layoutY="474.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="地铁" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="85.0" />
-      <Button id="餐厅" layoutX="350.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="餐厅" AnchorPane.leftAnchor="320.0" />
-      <Button id="写字楼1" layoutX="600.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="写字楼1" AnchorPane.leftAnchor="555.0" />
-      <Button id="写字楼2" layoutX="850.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="写字楼2" AnchorPane.leftAnchor="790.0" AnchorPane.topAnchor="150.0" />
-      <Button id="教学楼" layoutX="320.0" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="教学楼" />
-      <Button id="电影院" layoutX="555.0" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="电影院" />
-      <Button id="公寓2" layoutX="790.0" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="公寓2" />
+      <Button fx:id="Button0" layoutX="75.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="公寓1" AnchorPane.leftAnchor="85.0" AnchorPane.topAnchor="150.0" />
+      <Button id="地铁" fx:id="Button5" layoutX="85.0" layoutY="474.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="地铁" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="85.0" />
+      <Button id="餐厅" fx:id="Button2" layoutX="350.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="餐厅" AnchorPane.leftAnchor="320.0" />
+      <Button id="写字楼1" fx:id="Button3" layoutX="600.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="写字楼1" AnchorPane.leftAnchor="555.0" />
+      <Button id="写字楼2" fx:id="Button4" layoutX="850.0" layoutY="150.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="写字楼2" AnchorPane.leftAnchor="790.0" AnchorPane.topAnchor="150.0" />
+      <Button id="教学楼" fx:id="Button6" layoutX="320.0" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="教学楼" />
+      <Button id="电影院" fx:id="Button7" layoutX="555.0" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="电影院" />
+      <Button id="公寓2" fx:id="Button1" layoutX="790.0" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="公寓2" />
       <Slider layoutX="160.0" layoutY="375.0" max="1440.0" prefHeight="18.0" prefWidth="850.0" AnchorPane.bottomAnchor="375.0" AnchorPane.topAnchor="375.0" />
       <ChoiceBox fx:id="dayBox" layoutX="60.0" layoutY="9.0" prefHeight="22.0" prefWidth="81.0" />
       <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="日期" wrappingWidth="44.0">

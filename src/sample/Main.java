@@ -20,9 +20,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Main extends Application implements Initializable {
-
     @FXML
     private ChoiceBox dayBox;
+    @FXML
+    private Button Button0, Button1, Button2, Button3, Button4, Button5, Button6, Button7;
 
     private static ChoiceBox dayBoxSelected;
     private Stage primaryStage;
@@ -105,10 +106,12 @@ public class Main extends Application implements Initializable {
         return ClickedButton;
     }
 
-    public void setButtonColor(String placename, Button x) {
-        if (tracer_logic.getNumOfContacted(placename) > 50) x.setStyle("-fx-background-color:RED");
-        else if (tracer_logic.getNumOfContacted(placename) > 30) x.setStyle("-fx-background-color:ORANGE");
-        else if (tracer_logic.getNumOfContacted(placename) > 10) x.setStyle("-fx-background-color:YELLOW");
+    public void setButtonColor(Button x) {
+        String placename = x.getText();
+        int personnum = tracer_logic.getNumOfContacted(placename);
+        if (personnum > 50) x.setStyle("-fx-background-color:RED");
+        else if (personnum > 30) x.setStyle("-fx-background-color:ORANGE");
+        else if (personnum > 0) x.setStyle("-fx-background-color:YELLOW");
     }
 
     //Box选择框初始化
@@ -125,11 +128,27 @@ public class Main extends Application implements Initializable {
         String[] days = (String[]) list.toArray(new String[0]);
         dayBox.getSelectionModel().select(0);
         tracer_logic.readInfo(days[0]);
+        setButtonColor(Button0);
+        setButtonColor(Button1);
+        setButtonColor(Button2);
+        setButtonColor(Button3);
+        setButtonColor(Button4);
+        setButtonColor(Button5);
+        setButtonColor(Button6);
+        setButtonColor(Button7);
         dayBoxSelected = dayBox;
         dayBoxSelected.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 tracer_logic.readInfo(days[newValue.intValue()]);
+                setButtonColor(Button0);
+                setButtonColor(Button1);
+                setButtonColor(Button2);
+                setButtonColor(Button3);
+                setButtonColor(Button4);
+                setButtonColor(Button5);
+                setButtonColor(Button6);
+                setButtonColor(Button7);
             }
         });
     }
