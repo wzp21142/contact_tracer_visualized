@@ -20,16 +20,23 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Main extends Application implements Initializable {
+    private static ChoiceBox dayBoxSelected;
+    private static String ButtonName;
     @FXML
     private ChoiceBox dayBox;
     @FXML
     private Button Button0, Button1, Button2, Button3, Button4, Button5, Button6, Button7;
-
-    private static ChoiceBox dayBoxSelected;
     private Stage primaryStage;
     private AnchorPane rootLayout;
-    private static String ButtonName;
-    private static Button ClickedButton;
+
+    public static void main(String[] args) {
+        //tracer_logic.readInfo();
+        launch(args);
+    }
+
+    public static String getButtonName() {
+        return ButtonName;
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -65,7 +72,7 @@ public class Main extends Application implements Initializable {
             // Load person overview.
             AnchorPane location = FXMLLoader.load(getClass().getResource("Floor_Status.fxml"));
             Stage infoStage = new Stage();
-            infoStage.setTitle(Place_Name+"信息");
+            infoStage.setTitle(Place_Name + "信息");
             infoStage.setScene(new Scene(location));
             infoStage.setResizable(false);
             infoStage.show();
@@ -76,34 +83,17 @@ public class Main extends Application implements Initializable {
 
     /**
      * Returns the main stage.
+     *
      * @return
      */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
-    public static void main(String[] args) {
-        //tracer_logic.readInfo();
-        launch(args);
-    }
-
     public void FloorClicked(MouseEvent mouseEvent) {
         Button EventSource = (Button) mouseEvent.getSource();
         ButtonName = EventSource.getText();
-        ClickedButton = EventSource;
         showPersonOverview(ButtonName);
-    }
-
-    public static String getButtonName() {
-        return ButtonName;
-    }
-
-    public static ChoiceBox getDayBoxSelected() {
-        return dayBoxSelected;
-    }
-
-    public static Button getClickedButton() {
-        return ClickedButton;
     }
 
     public void setButtonColor(Button x) {
@@ -112,9 +102,10 @@ public class Main extends Application implements Initializable {
         if (personnum > 50) x.setStyle("-fx-background-color:RED");
         else if (personnum > 30) x.setStyle("-fx-background-color:ORANGE");
         else if (personnum > 0) x.setStyle("-fx-background-color:YELLOW");
+        else if (personnum == 0) x.setStyle("-fx-background-color:#89EDED");
     }
 
-    //Box选择框初始化
+    //Box选择框以及风险等级初始化
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList list = new ArrayList();

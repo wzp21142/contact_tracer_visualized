@@ -65,6 +65,29 @@ public class RandomHuman {
         return first + second;
     }
 
+    public static void main(String[] args) throws IOException {
+        for (int j = 0; j < 5; j++) {
+            File file = new File((j + 1) + "日.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileWriter fileWriter = new FileWriter(file.getName());
+            fileWriter.write("");//清空已有文本
+            fileWriter.close();
+            FileWriter fileWriter2 = new FileWriter(file.getName(), true);
+            for (int i = 0; i < 500; i++) {
+                String temp = new RandomHuman().getInfo().toString();
+                if (i == 499)
+                    temp = temp.replaceAll("\n", "");
+                fileWriter2.write(temp);
+                fileWriter2.flush();
+            }
+
+        }
+
+        System.out.println("Done");
+    }
+
     private StringBuilder getRoute() {
         int numOfPlaces = getNum(3, 7);//一个人可能去过几处地方
         int a = 0, place_index = -1;
@@ -97,31 +120,8 @@ public class RandomHuman {
         result.append(getRoad() + " ");
         result.append(getRoad() + " ");
         result.append(getTel() + " ");
-        result.append((getNum(0, 99) < 85) +" "+"0"+" ");
+        result.append((getNum(0, 99) < 85) + " " + "0" + " ");
         result.append(getRoute() + "\n");
         return result;
-    }
-
-    public static void main(String[] args) throws IOException {
-        for (int j = 0; j < 5; j++) {
-            File file = new File((j + 1) + "日.txt");
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            FileWriter fileWriter = new FileWriter(file.getName());
-            fileWriter.write("");//清空已有文本
-            fileWriter.close();
-            FileWriter fileWriter2 = new FileWriter(file.getName(), true);
-            for (int i = 0; i < 500; i++) {
-                String temp = new RandomHuman().getInfo().toString();
-                if (i == 499)
-                    temp = temp.replaceAll("\n", "");
-                fileWriter2.write(temp);
-                fileWriter2.flush();
-            }
-
-        }
-
-        System.out.println("Done");
     }
 }

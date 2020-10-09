@@ -28,12 +28,12 @@ public class tracer_logic {
             while ((tempString = reader.readLine()) != null) {
                 String[] personInfo = tempString.split(" ");//0:人名,1:工作地点,2:居住地点,3:电话号码,4:是否戴口罩,5:感染情况,6:去留信息
                 //System.out.println(tempString);
-                Human aPerson=new Human(personInfo[0],personInfo[1],personInfo[2],personInfo[3],Boolean.parseBoolean(personInfo[4]),Integer.parseInt(personInfo[5]));
+                Human aPerson = new Human(personInfo[0], personInfo[1], personInfo[2], personInfo[3], Boolean.parseBoolean(personInfo[4]), Integer.parseInt(personInfo[5]));
                 String[] placeInfo = personInfo[6].split(",");
-                for(String aInfo:placeInfo) {
-                    String[] tempS1=aInfo.split("-");//此时0存起止时间,1存地点
-                    int i=-1;
-                    for(String aPlace:places) {
+                for (String aInfo : placeInfo) {
+                    String[] tempS1 = aInfo.split("-");//此时0存起止时间,1存地点
+                    int i = -1;
+                    for (String aPlace : places) {
                         i++;
                         if (aPlace.equals(tempS1[1])) {//在对应的跳表中存入手机号以及起止时间
                             String[] tempTime = tempS1[0].split("~");
@@ -69,7 +69,7 @@ public class tracer_logic {
                 a.person_info.IllLevel = (a.person_info.IllLevel == 3) ? 3 : (a.person_info.isMaskOn == true) ? 1 : 2;
                 b.person_info.IllLevel = a.person_info.IllLevel;
             }
-            pArrive = SL_Places[x].findIlledPerson(pArrive);
+            pArrive = SL_Places[x].findIlledPerson(pArrive);//从该节点开始继续寻找
         }
     }
 
@@ -86,7 +86,8 @@ public class tracer_logic {
         SkipListNode p = null;
         do {
             p = SL_Places[index].findSuspectedPerson(p);
-            num++;
+            if (p != null)
+                num++;
         }
         while (p != null);
         return num;
