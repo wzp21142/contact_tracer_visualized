@@ -1,0 +1,24 @@
+<changelist name="在rebase之前未提交更改_[Default]" date="1602950262540" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/在rebase之前未提交更改_[Default]/shelved.patch" />
+  <option name="DESCRIPTION" value="在rebase之前未提交更改 [Default]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/contact_tracer_visualized/sample/Human.class" />
+    <option name="AFTER_PATH" value="out/production/contact_tracer_visualized/sample/Human.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/在rebase之前未提交更改_[Default]/Human.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/contact_tracer_visualized/sample/tracer_logic.class" />
+    <option name="AFTER_PATH" value="out/production/contact_tracer_visualized/sample/tracer_logic.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/在rebase之前未提交更改_[Default]/tracer_logic.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/contact_tracer_visualized/sample/InfoController.class" />
+    <option name="AFTER_PATH" value="out/production/contact_tracer_visualized/sample/InfoController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/在rebase之前未提交更改_[Default]/InfoController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/contact_tracer_visualized/sample/SkipList.class" />
+    <option name="AFTER_PATH" value="out/production/contact_tracer_visualized/sample/SkipList.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/在rebase之前未提交更改_[Default]/SkipList.class" />
+  </binary>
+</changelist>

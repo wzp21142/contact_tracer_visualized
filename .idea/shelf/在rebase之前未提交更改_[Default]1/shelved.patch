@@ -1,0 +1,168 @@
+Index: src/sample/tracer_logic.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/sample/tracer_logic.java	(revision 5d6ac7246f07bcb0e7c94a2833483f0063eca20c)
++++ src/sample/tracer_logic.java	(date 1602950338985)
+@@ -67,7 +67,7 @@
+                 a.person_info.IllLevel = (a.person_info.IllLevel == 3) ? 3 : (a.person_info.isMaskOn == true) ? 1 : 2;
+                 b.person_info.IllLevel = a.person_info.IllLevel;
+             }
+-            pArrive = SL_Places[x].findIlledPerson(pArrive);//从该节点开始继续寻找
++            pArrive = SL_Places[x].findIlledPerson(pArrive);
+         }
+     }
+ 
+@@ -99,12 +99,11 @@
+         }
+         String tempString;//存放临时读取出的信息
+         BufferedWriter buffwriter = new BufferedWriter(new FileWriter(file.getName(), false));
+-        buffwriter.write("");
+-        buffwriter.flush();
+-        RandomAccessFile reader = new RandomAccessFile(file, "r");//使用randomaccess进行读取,便于重新定位到第一行进行动态读写
++        buffwriter.write("");buffwriter.flush();
++        RandomAccessFile reader = new RandomAccessFile(file,"r");//使用randomaccess进行读取,便于重新定位到第一行进行动态读写
+         SkipListNode<Human> contacted = null;
+         boolean repeat_flag;
+-        for (int i = 0; i < 8; i++) {
++        for (int i=0;i<8;i++) {
+             SkipList list = SL_Places[i];
+             //System.out.println(places[i]);
+             do {
+Index: src/sample/Human.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/sample/Human.java	(revision 5d6ac7246f07bcb0e7c94a2833483f0063eca20c)
++++ src/sample/Human.java	(date 1602950345026)
+@@ -1,36 +1,26 @@
+ package sample;
+ 
+-public class Human {
+-	String name, workspace, home, phonenumber;
+-	boolean isMaskOn;
+-	int IllLevel;
+-	//Place placeinfo;
++public class  Human {
++		String name,workspace,home,phonenumber;
++		boolean isMaskOn;
++		int IllLevel;
++		//Place placeinfo;
+ 
+-	public Human() {
+-		this(null, null, null, null, false, 0);
+-	}
+-
+-	public Human(String a, String b, String c, String d, boolean isMaskOn, int IllLevel) {
+-		name = a;
+-		workspace = b;
+-		home = c;
+-		phonenumber = d;
+-		this.isMaskOn = isMaskOn;
+-		this.IllLevel = IllLevel;
+-	}
+-
+-	public boolean isEqual(Human a) {
+-		if (this.phonenumber.equals(a.phonenumber))
+-			return true;
+-		else return false;
+-	}
++		public Human(){
++			this(null,null,null,null,false,0);
++		}
++		public Human(String a,String b,String c,String d,boolean isMaskOn,int IllLevel) {
++			name=a;workspace=b;home=c;phonenumber=d;this.isMaskOn=isMaskOn;this.IllLevel=IllLevel;
++		}
++		public boolean isEqual(Human a){
++			if(this.phonenumber.equals(a.phonenumber))
++				return true;
++			else return false;
++		}
+ 
+-	public String toString() {
+-		return name + " " + workspace + " " + home + " " + phonenumber + " " + isMaskOn + " " + IllLevel;
+-	}
+-
+-	public String toString_write() {
+-		return name + " " + workspace + " " + home + " " + phonenumber;
+-	}
+-	//+" "+(IllLevel==0?"未感染":IllLevel==1?"有防护密接":IllLevel==2?"无防护密接":"感染者") 需要打印感染等级时添加
++		public String toString(){
++			return name+" "+workspace+" "+home+" "+phonenumber+" "+isMaskOn+" "+IllLevel;
++		}
++		public String toString_write(){return name+" "+workspace+" "+home+" "+phonenumber;}
++		//+" "+(IllLevel==0?"未感染":IllLevel==1?"有防护密接":IllLevel==2?"无防护密接":"感染者") 需要打印感染等级时添加
+ }
+Index: src/sample/SkipList.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/sample/SkipList.java	(revision 5d6ac7246f07bcb0e7c94a2833483f0063eca20c)
++++ src/sample/SkipList.java	(date 1602950341593)
+@@ -220,30 +220,28 @@
+     private void backLink(SkipListNode<T> node1,SkipListNode<T> node2){
+         node2.left=node1;
+         node2.right=node1.right;
+-        node1.right.left = node2;
+-        node1.right = node2;
++        node1.right.left=node2;
++        node1.right=node2;
+     }
+-
+     /**
+      * 水平双向连接
+-     */
+-    private void horizontalLink(SkipListNode<T> node1, SkipListNode<T> node2) {
+-        node1.right = node2;
+-        node2.left = node1;
++     * */
++    private void horizontalLink(SkipListNode<T> node1,SkipListNode<T> node2){
++        node1.right=node2;
++        node2.left=node1;
+     }
+ 
+     //垂直双向连接
+-    private void verticalLink(SkipListNode<T> node1, SkipListNode<T> node2) {
+-        node1.down = node2;
+-        node2.up = node1;
++    private void verticalLink(SkipListNode<T> node1, SkipListNode<T> node2){
++        node1.down=node2;
++        node2.up=node1;
+     }
+-
+     //打印原始数据
+     public String toString() {
+         if (isEmpty()) {
+             return "跳表为空！";
+         }
+-        StringBuilder result = new StringBuilder();
++        StringBuilder result=new StringBuilder();
+         SkipListNode<T> p=head;
+         while (p.down!=null) {
+             p=p.down;
+Index: src/sample/InfoController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/sample/InfoController.java	(revision 5d6ac7246f07bcb0e7c94a2833483f0063eca20c)
++++ src/sample/InfoController.java	(date 1602950343415)
+@@ -60,12 +60,11 @@
+         LevelCol.setCellValueFactory(new PropertyValueFactory<Human_SinglePlace,String>("IllLevel"));
+         information.setItems(datalist);
+     }
+-
+     //获取一个地点下
+     public StringBuilder getHumanPlaceInfo(SkipList[] list,int index) throws ParseException {
+         StringBuilder temp = new StringBuilder();
+         String[] PersonList=list[index].toString().split("\n");//分离出每个人的信息
+-        for(int i=0; i<PersonList.length; i++) {
++        for(int i=0;i<PersonList.length;i++) {
+             String[] tempStringArrive = PersonList[i].split("-");//以-为界,分开时间与个人信息
+             String[] tempString2 = tempStringArrive[1].split(" ");
+             //tempString2[3] = tempString2[3].substring(0, tempString2[3].length() - 2);
+diff --git out/production/contact_tracer_visualized/sample/Main.fxml out/production/contact_tracer_visualized/sample/Main.fxml
+diff --git src/sample/Main.fxml src/sample/Main.fxml

@@ -217,9 +217,9 @@ public class SkipList <T>{//跳表类
         nodes++;//层数递增
     }
     //node1后面插入node2
-    private void backLink(SkipListNode<T> node1,SkipListNode<T> node2){
-        node2.left=node1;
-        node2.right=node1.right;
+    private void backLink(SkipListNode<T> node1, SkipListNode<T> node2) {
+        node2.left = node1;
+        node2.right = node1.right;
         node1.right.left = node2;
         node1.right = node2;
     }
@@ -244,9 +244,9 @@ public class SkipList <T>{//跳表类
             return "跳表为空！";
         }
         StringBuilder result = new StringBuilder();
-        SkipListNode<T> p=head;
-        while (p.down!=null) {
-            p=p.down;
+        SkipListNode<T> p = head;
+        while (p.down != null) {
+            p = p.down;
         }
 
         while (p.left!=null) {

@@ -1,0 +1,29 @@
+<changelist name="在rebase之前未提交更改_[Default]1" date="1602950470144" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/在rebase之前未提交更改_[Default]1/shelved.patch" />
+  <option name="DESCRIPTION" value="在rebase之前未提交更改 [Default]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/contact_tracer_visualized/sample/Human.class" />
+    <option name="AFTER_PATH" value="out/production/contact_tracer_visualized/sample/Human.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/在rebase之前未提交更改_[Default]1/Human.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/contact_tracer_visualized/sample/tracer_logic.class" />
+    <option name="AFTER_PATH" value="out/production/contact_tracer_visualized/sample/tracer_logic.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/在rebase之前未提交更改_[Default]1/tracer_logic.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/contact_tracer_visualized/sample/InfoController.class" />
+    <option name="AFTER_PATH" value="out/production/contact_tracer_visualized/sample/InfoController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/在rebase之前未提交更改_[Default]1/InfoController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/contact_tracer_visualized/sample/SkipList.class" />
+    <option name="AFTER_PATH" value="out/production/contact_tracer_visualized/sample/SkipList.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/在rebase之前未提交更改_[Default]1/SkipList.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/contact_tracer_visualized/sample/SkipListNode.class" />
+    <option name="AFTER_PATH" value="out/production/contact_tracer_visualized/sample/SkipListNode.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/在rebase之前未提交更改_[Default]1/SkipListNode.class" />
+  </binary>
+</changelist>

@@ -60,17 +60,16 @@ public class InfoController implements Initializable {
         LevelCol.setCellValueFactory(new PropertyValueFactory<Human_SinglePlace,String>("IllLevel"));
         information.setItems(datalist);
     }
-
     //获取一个地点下
     public StringBuilder getHumanPlaceInfo(SkipList[] list,int index) throws ParseException {
         StringBuilder temp = new StringBuilder();
         String[] PersonList=list[index].toString().split("\n");//分离出每个人的信息
-        for(int i=0; i<PersonList.length; i++) {
+        for (int i = 0; i < PersonList.length; i++) {
             String[] tempStringArrive = PersonList[i].split("-");//以-为界,分开时间与个人信息
             String[] tempString2 = tempStringArrive[1].split(" ");
             //tempString2[3] = tempString2[3].substring(0, tempString2[3].length() - 2);
             String tempLeavetime = list[index + 8].findPersonbyPhone(tempString2[3]).toString().split("-")[0];
-            temp.append(tempString2[0]+" "+tempString2[1]+" "+tempString2[2]+" "+tempString2[3]+" "+tempString2[4]+" "+tempString2[5]+" "+tempStringArrive[0]+" "+tempLeavetime+"\n");
+            temp.append(tempString2[0] + " " + tempString2[1] + " " + tempString2[2] + " " + tempString2[3] + " " + tempString2[4] + " " + tempString2[5] + " " + tempStringArrive[0] + " " + tempLeavetime + "\n");
         }
         //System.out.println(temp);
         return temp;
