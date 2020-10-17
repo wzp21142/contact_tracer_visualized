@@ -45,9 +45,6 @@ public class Main extends Application implements Initializable {
         initRootLayout();
     }
 
-    /**
-     * Initializes the root layout.
-     */
     public void initRootLayout() {
         try {
             // Load root layout from fxml file.
@@ -64,9 +61,6 @@ public class Main extends Application implements Initializable {
         }
     }
 
-    /**
-     * Shows the person overview inside the root layout.
-     */
     public void showPersonOverview(String Place_Name) {
         try {
             // Load person overview.

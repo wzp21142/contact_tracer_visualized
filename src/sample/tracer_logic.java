@@ -1,9 +1,6 @@
 package sample;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class tracer_logic {
 
@@ -51,6 +48,7 @@ public class tracer_logic {
             reader.close();
             for (int i = 0; i < 8; i++)
                 calIllLevel(i);
+            SaveContacted(filename);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -86,10 +84,47 @@ public class tracer_logic {
         SkipListNode p = null;
         do {
             p = SL_Places[index].findSuspectedPerson(p);
+            //System.out.println(p);
             if (p != null)
                 num++;
         }
         while (p != null);
         return num;
+    }
+
+    public static void SaveContacted(String filename) throws IOException {
+        File file = new File(filename + "无防护密接者.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        String tempString;//存放临时读取出的信息
+        BufferedWriter buffwriter = new BufferedWriter(new FileWriter(file.getName(), false));
+        buffwriter.write("");
+        buffwriter.flush();
+        RandomAccessFile reader = new RandomAccessFile(file, "r");//使用randomaccess进行读取,便于重新定位到第一行进行动态读写
+        SkipListNode<Human> contacted = null;
+        boolean repeat_flag;
+        for (int i = 0; i < 8; i++) {
+            SkipList list = SL_Places[i];
+            //System.out.println(places[i]);
+            do {
+                contacted = list.findSuspectedPerson(contacted);
+                if (contacted != null && contacted.person_info.IllLevel < 3) {
+                    reader.seek(0);
+                    repeat_flag = false;
+                    while ((tempString = reader.readLine()) != null) {
+                        if (contacted.person_info.toString().split(" ")[3].equals(tempString.split(" ")[3])) {
+                            repeat_flag = true;
+                        }
+                    }
+                    if (!repeat_flag) {
+                        buffwriter.write(contacted.person_info.toString_write() + "\n");//写文件时将无用信息省略
+                        buffwriter.flush();//每写一行flush一次,与reader相配合
+                    }
+                }
+            }
+            while (contacted != null);
+        }
+        buffwriter.close();
     }
 }

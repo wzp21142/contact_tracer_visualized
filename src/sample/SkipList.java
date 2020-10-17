@@ -2,49 +2,47 @@ package sample;
 
 import java.util.Random;
 
-class SkipListNode<T> {//跳表节点类
+class SkipListNode <T> {//跳表节点类
     public int time;
     public T person_info;
     public SkipListNode<T> up, down, left, right; // 上下左右 四个指针
 
-    public SkipListNode(int k, T v) {
+    public SkipListNode(int k,T v) {
         time = k;
         person_info = v;
     }
-
     public int getTime() {
         return time;
     }
-
     public void setTime(int time) {
         this.time = time;
     }
-
     public T getValue() {
         return person_info;
     }
-
     public void setValue(T person_info) {
         this.person_info = person_info;
     }
 
     public String toString() {
-        String hour = String.valueOf(time / 60).length() == 1 ? "0" + String.valueOf(time / 60) : String.valueOf(time / 60);
-        String minute = String.valueOf(time % 60).length() == 1 ? "0" + String.valueOf(time % 60) : String.valueOf(time % 60);
+        String hour = String.valueOf(time / 60).length() == 1 ? "0" + time / 60 : String.valueOf(time / 60);
+        String minute = String.valueOf(time % 60).length() == 1 ? "0" + time % 60 : String.valueOf(time % 60);
         //return "time-Info:"+hour+":"+minute+"(第"+time+"分钟)-"+tel_number;
         return hour + ":" + minute + "-" + person_info;
     }
+
 }
 
-public class SkipList<T> {//跳表类
-    private static final double PROBABILITY = 0.5;//向上提升一个的概率
+public class SkipList <T>{//跳表类
     public final int MaxPerson = 500;
     final int HEAD_KEY = 0; // 负无穷
     final int TAIL_KEY = 1440; // 正无穷
-    private SkipListNode<T> head, tail;
+
+    private SkipListNode<T> head,tail;
     private int nodes;//节点总数
     private int listLevel;//层数
-    private Random random;// 用于产生随机数
+    private Random random;// 用于投掷硬币
+    private static final double PROBABILITY=0.5;//向上提升一个的概率
 
     public SkipList() {
         // TODO Auto-generated constructor stub
@@ -127,13 +125,11 @@ public class SkipList<T> {//跳表类
             while (p.down != null)
                 p = p.down;
         }
-        p = p.right;
-        if (p.time == TAIL_KEY) return null;
         while (p.right.time != TAIL_KEY) {//不断向右检索直到检索到边界
+            p = p.right;//后续只要遇到TALI_KEY就是未查到,返回
             String temp = (p.getValue().toString().split(" ")[5]);
-            if (Integer.parseInt(temp) > 1)
+            if (Integer.parseInt(temp) == 2)
                 break;
-            p = p.right;
             if (p.right.time == TAIL_KEY)
                 return null;
         }
@@ -155,11 +151,11 @@ public class SkipList<T> {//跳表类
     //返回list中所有time值在arrive中比smaller大的且同时在leave中比bigger小的nodes.
     public SkipListNode<Human>[] FindCommonNodes(SkipListNode<T> smaller, SkipListNode<T> bigger, SkipList list_arrive, SkipList list_leave) {
         SkipListNode<Human>[] result = new SkipListNode[MaxPerson];
-        SkipListNode LeaveHead = list_leave.findNode(smaller.time).right;//离开时间晚于病人的到达时间的节点头
-        int IllLeaveTime = bigger.left.time;//病人的离开时间
+        SkipListNode LeaveHead = list_leave.findNode(smaller.time).right;
+        int IllLeaveTime = bigger.left.time;
         int i = 0;
         while (LeaveHead.right != null) {
-            if (list_arrive.findPersonbyPhone(LeaveHead.person_info.toString().split(" ")[3]).time <= IllLeaveTime) {//找出同时在到达时间上小于等于病人离开时间的人中
+            if (list_arrive.findPersonbyPhone(LeaveHead.person_info.toString().split(" ")[3]).time <= IllLeaveTime) {
                 result[i] = new SkipListNode<>(LeaveHead.time, (Human) LeaveHead.person_info);
                 i++;
             }
@@ -182,7 +178,11 @@ public class SkipList<T> {//跳表类
         }
     }
 
-    public void put(int k, T v) {
+    /**
+     * 向跳跃表中添加key-value
+     * 
+     * */
+    public void put(int k,T v){
         SkipListNode<T> p = null;
         p = findNode(k);
 
@@ -195,32 +195,31 @@ public class SkipList<T> {//跳表类
             if (currentLevel >= listLevel) {
                 listLevel++;
                 SkipListNode<T> p1 = new SkipListNode<T>(HEAD_KEY, null);
-                SkipListNode<T> p2 = new SkipListNode<T>(TAIL_KEY, null);
+                SkipListNode<T> p2=new SkipListNode<T>(TAIL_KEY, null);
                 horizontalLink(p1, p2);
                 verticalLink(p1, head);
                 verticalLink(p2, tail);
-                head = p1;
-                tail = p2;
+                head=p1;
+                tail=p2;
             }
             //将p移动到上一层
-            while (p.up == null) {
-                p = p.left;
+            while (p.up==null) {
+                p=p.left;
             }
-            p = p.up;
+            p=p.up;
 
-            SkipListNode<T> e = new SkipListNode<T>(k, null);//只保存key就ok
+            SkipListNode<T> e=new SkipListNode<T>(k, null);//只保存key就ok
             backLink(p, e);//将e插入到p的后面
             verticalLink(e, q);//将e和q上下连接
-            q = e;
+            q=e;
             currentLevel++;
         }
         nodes++;//层数递增
     }
-
     //node1后面插入node2
-    private void backLink(SkipListNode<T> node1, SkipListNode<T> node2) {
-        node2.left = node1;
-        node2.right = node1.right;
+    private void backLink(SkipListNode<T> node1,SkipListNode<T> node2){
+        node2.left=node1;
+        node2.right=node1.right;
         node1.right.left = node2;
         node1.right = node2;
     }
@@ -233,43 +232,36 @@ public class SkipList<T> {//跳表类
         node2.left = node1;
     }
 
-    /**
-     * 垂直双向连接
-     */
+    //垂直双向连接
     private void verticalLink(SkipListNode<T> node1, SkipListNode<T> node2) {
         node1.down = node2;
         node2.up = node1;
     }
 
-    /**
-     * 打印出原始数据
-     */
+    //打印原始数据
     public String toString() {
         if (isEmpty()) {
             return "跳表为空！";
         }
         StringBuilder result = new StringBuilder();
-        SkipListNode<T> p = head;
-        while (p.down != null) {
-            p = p.down;
+        SkipListNode<T> p=head;
+        while (p.down!=null) {
+            p=p.down;
         }
 
-        while (p.left != null) {
-            p = p.left;
+        while (p.left!=null) {
+            p=p.left;
         }
-        if (p.right != null) {
-            p = p.right;
+        if (p.right!=null) {
+            p=p.right;
         }
-        while (p.right != null) {
+        while (p.right!=null) {
             result.append(p);
             result.append("\n");
-            p = p.right;
+            p=p.right;
         }
 
         return result.toString();
     }
 
-    public String[] getPersonsInfo() {
-        return this.toString().split("\n");
-    }
 }
