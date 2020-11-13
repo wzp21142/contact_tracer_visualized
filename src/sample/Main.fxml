@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+
 <AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="sample.Main">
     <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d1a35f" height="768.0" stroke="BLACK" strokeType="INSIDE"
+                   width="1067.0"/>
         <Button fx:id="Button0" layoutX="85.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#FloorClicked"
                 prefHeight="150.0" prefWidth="150.0" text="公寓1" AnchorPane.leftAnchor="85.0"
                 AnchorPane.topAnchor="192.0"/>
@@ -30,6 +36,64 @@
                 onMouseClicked="#FloorClicked" prefHeight="150.0" prefWidth="150.0" text="公寓2"/>
         <ChoiceBox fx:id="dayBox" layoutX="60.0" layoutY="9.0" prefHeight="22.0" prefWidth="81.0"/>
         <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="日期" wrappingWidth="44.0">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#93c4d4" height="168.0" layoutX="717.0" layoutY="2.0"
+                   stroke="BLACK" strokeType="INSIDE" width="348.0"/>
+        <Text layoutX="800.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="实时数据" wrappingWidth="81.0">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <ChoiceBox fx:id="ProvinceBox" layoutX="881.0" layoutY="8.0" prefHeight="22.0" prefWidth="81.0"/>
+        <Text layoutX="725.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="现有确诊数:" wrappingWidth="111.0">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <Text layoutX="804.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="总确诊数:" wrappingWidth="81.0">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <Text layoutX="881.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="疑似病例数:" wrappingWidth="96.0">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <Text layoutX="725.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="治愈数:" wrappingWidth="81.0">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <Text layoutX="882.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="死亡数:" wrappingWidth="81.0">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <Text fx:id="Text1" layoutX="886.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="81.0">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <Text fx:id="Text0" layoutX="821.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="81.0">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <Text fx:id="Text2" layoutX="986.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="81.0">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <Text fx:id="Text3" layoutX="786.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="81.0">
+            <font>
+                <Font size="18.0"/>
+            </font>
+        </Text>
+        <Text fx:id="Text4" layoutX="946.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="81.0">
             <font>
                 <Font size="18.0"/>
             </font>

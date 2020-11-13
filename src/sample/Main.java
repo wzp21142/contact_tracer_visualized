@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -20,12 +21,15 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Main extends Application implements Initializable {
-    private static ChoiceBox dayBoxSelected;
+    private static ChoiceBox dayBoxSelected, ProvinceBoxSelected;
     private static String ButtonName;
+    private static String[] Provinces = "北京,天津,上海,重庆,河北,山西,辽宁,吉林,黑龙江,江苏,浙江,安徽,福建,江西,山东,河南,湖北,湖南,广东,海南,四川,贵州,云南,陕西,甘肃,青海,台湾,内蒙古,广西,西藏,宁夏,新疆,香港,澳门".split(",");
     @FXML
-    private ChoiceBox dayBox;
+    private ChoiceBox dayBox, ProvinceBox;
     @FXML
     private Button Button0, Button1, Button2, Button3, Button4, Button5, Button6, Button7;
+    @FXML
+    private Text Text0, Text1, Text2, Text3, Text4;
     private Stage primaryStage;
     private AnchorPane rootLayout;
 
@@ -84,6 +88,9 @@ public class Main extends Application implements Initializable {
         return primaryStage;
     }
 
+    public void GetterChanged(MouseEvent mouseEvent) {
+    }
+
     public void FloorClicked(MouseEvent mouseEvent) {
         Button EventSource = (Button) mouseEvent.getSource();
         ButtonName = EventSource.getText();
@@ -96,7 +103,7 @@ public class Main extends Application implements Initializable {
         if (personnum > 50) x.setStyle("-fx-background-color:RED");
         else if (personnum > 30) x.setStyle("-fx-background-color:ORANGE");
         else if (personnum > 0) x.setStyle("-fx-background-color:YELLOW");
-        else if (personnum == 0) x.setStyle("-fx-background-color:#89EDED");
+        else if (personnum == 0) x.setStyle("-fx-background-color:#4A87A1");
     }
 
     //Box选择框以及风险等级初始化
@@ -134,6 +141,24 @@ public class Main extends Application implements Initializable {
                 setButtonColor(Button5);
                 setButtonColor(Button6);
                 setButtonColor(Button7);
+            }
+        });
+        Text0.setText("0");
+        Text1.setText("0");
+        Text2.setText("0");
+        Text3.setText("0");
+        Text4.setText("0");
+        ProvinceBox.getItems().addAll(Provinces);
+        ProvinceBoxSelected = ProvinceBox;
+        ProvinceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                String[] result = status_getter.get_Province_status(Provinces[newValue.intValue()]);
+                Text0.setText(result[0]);
+                Text1.setText(result[1]);
+                Text2.setText(result[2]);
+                Text3.setText(result[3]);
+                Text4.setText(result[4]);
             }
         });
     }
