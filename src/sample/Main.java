@@ -33,7 +33,6 @@ public class Main extends Application implements Initializable {
     private AnchorPane rootLayout;
 
     public static void main(String[] args) {
-        //tracer_logic.readInfo();
         launch(args);
     }
 
@@ -58,16 +57,9 @@ public class Main extends Application implements Initializable {
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("COVID-19.jpg")));
         primaryStage.show();
-        //initRootLayout();
     }
 
-    public void initRootLayout() {
-        // try {
-        // Load root layout from fxml file.
-        //  } catch (IOException e) {
-        //   e.printStackTrace();
-        // }
-    }
+
 
     public void showPersonOverview(String Place_Name) {
         try {
@@ -83,10 +75,25 @@ public class Main extends Application implements Initializable {
         }
     }
 
+    public void showChartOverview(String Place_Name) {
+        try {
+            // Load person overview.
+            AnchorPane location = FXMLLoader.load(getClass().getResource("chart.fxml"));
+            Stage chartStage = new Stage();
+            chartStage.setTitle(Place_Name + "感染趋势");
+            chartStage.setScene(new Scene(Chart.createContent()));
+            chartStage.setResizable(false);
+            chartStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void FloorClicked(MouseEvent mouseEvent) {
         Button EventSource = (Button) mouseEvent.getSource();
         ButtonName = EventSource.getText();
         showPersonOverview(ButtonName);
+        showChartOverview(ButtonName);
     }
 
     public void setButtonColor(Button x) {

@@ -62,9 +62,9 @@ public class InfoController implements Initializable {
     }
 
     //获取一个地点下的信息
-    public StringBuilder getHumanPlaceInfo(SkipList[] list,int index) throws ParseException {
+    public static StringBuilder getHumanPlaceInfo(SkipList[] list, int index) throws ParseException {
         StringBuilder temp = new StringBuilder();
-        String[] PersonList=list[index].toString().split("\n");//分离出每个人的信息
+        String[] PersonList = list[index].toString().split("\n");//分离出每个人的信息
         for (int i = 0; i < PersonList.length; i++) {
             String[] tempStringArrive = PersonList[i].split("-");//以-为界,分开时间与个人信息
             String[] tempString2 = tempStringArrive[1].split(" ");
