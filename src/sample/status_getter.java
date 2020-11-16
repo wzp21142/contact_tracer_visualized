@@ -27,7 +27,7 @@ public class status_getter {
             connection.connect();
             // 获取所有响应头字段
             Map<String, List<String>> map = connection.getHeaderFields();
-            // 遍历所有的响应头字段
+            // 遍历输出所有的响应头字段
             /*for (String key : map.keySet()) {
                 System.out.println(key + "--->" + map.get(key));
             }*/

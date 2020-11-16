@@ -41,8 +41,8 @@ public class InfoController implements Initializable {
                 String[] Persons = getHumanPlaceInfo(list, i).toString().split("\n");
                 for (String aPerson : Persons) {
                     String[] Infos = aPerson.split(" ");
-                    String Mask=Infos[4].equals(true)?"是":"否";
-                    String Level=(Integer.parseInt(Infos[5])==0)?"未感染":(Integer.parseInt(Infos[5])==1)?"有防护密接":(Integer.parseInt(Infos[5])==2)?"无防护密接":"感染者";
+                    String Mask = Infos[4].equals("true") ? "是" : "否";
+                    String Level = (Integer.parseInt(Infos[5]) == 0) ? "未感染" : (Integer.parseInt(Infos[5]) == 1) ? "有防护密接" : (Integer.parseInt(Infos[5]) == 2) ? "无防护密接" : "感染者";
                     Human_SinglePlace tempHuman = new Human_SinglePlace(Infos[0], Infos[1], Infos[2], Infos[3], Mask, Level,Infos[6],Infos[7]);
                     //System.out.println(tempHuman);
                     datalist.add(tempHuman);
@@ -60,7 +60,8 @@ public class InfoController implements Initializable {
         LevelCol.setCellValueFactory(new PropertyValueFactory<Human_SinglePlace,String>("IllLevel"));
         information.setItems(datalist);
     }
-    //获取一个地点下
+
+    //获取一个地点下的信息
     public StringBuilder getHumanPlaceInfo(SkipList[] list,int index) throws ParseException {
         StringBuilder temp = new StringBuilder();
         String[] PersonList=list[index].toString().split("\n");//分离出每个人的信息
