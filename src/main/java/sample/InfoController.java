@@ -79,7 +79,7 @@ public class InfoController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            setTableColumns(tracer_logic.getSL(), Main.getButtonName());
+            setTableColumns(tracer_logic.getSL(), MainInterface.getButtonName());
         } catch (ParseException e) {
             e.printStackTrace();
         }

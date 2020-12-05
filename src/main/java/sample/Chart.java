@@ -6,8 +6,6 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
-import java.text.ParseException;
-
 public class Chart {
     private static String[] places = "公寓1,公寓2,餐厅,写字楼1,写字楼2,地铁,教学楼,电影院".split(",");
     private static SkipList[] SL_Places = tracer_logic.getSL();
@@ -33,7 +31,7 @@ public class Chart {
         XYChart.Series series = new LineChart.Series<>();
         SkipList[] list = tracer_logic.getSL();
         int[] nums = new int[24];
-        String PlaceName = Main.getButtonName();
+        String PlaceName = MainInterface.getButtonName();
         for (int i = 0; i < places.length; i++) {
             if (places[i].equals(PlaceName)) {
                 nums = calIllNum(i);

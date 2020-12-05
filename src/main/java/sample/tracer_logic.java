@@ -20,7 +20,8 @@ public class tracer_logic {
             SL_Places[i] = new SkipList();
         }
         try {
-            reader = new BufferedReader(new FileReader(file));//
+            InputStreamReader isr = new InputStreamReader(new FileInputStream(file), "UTF-8");
+            reader = new BufferedReader(isr);//
             String tempString = null;
             while ((tempString = reader.readLine()) != null) {
                 String[] personInfo = tempString.split(" ");//0:人名,1:工作地点,2:居住地点,3:电话号码,4:是否戴口罩,5:感染情况,6:去留信息
@@ -57,6 +58,8 @@ public class tracer_logic {
 
     //对第x个表中存储的人进行感染等级计算
     public static void calIllLevel(int x) {
+        //System.out.println(x);
+        //System.out.println(SL_Places[x].toString());
         SkipListNode<Human> pArrive = SL_Places[x].findIlledPerson(null);
         while (pArrive != null) {
             SkipListNode<Human>[] Contacted_Human = SL_Places[x].FindCommonNodes(SL_Places[x].getComparedNode(pArrive.time, true), SL_Places[x + 8].getComparedNode(SL_Places[x + 8].findPersonbyPhone(pArrive.person_info.phonenumber).time, false), SL_Places[x], SL_Places[x + 8]);

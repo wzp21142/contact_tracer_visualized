@@ -116,6 +116,7 @@ public class SkipList <T>{//跳表类
             if (p.right.time == TAIL_KEY)
                 return null;
         }
+        //System.out.println(p.person_info);
         return p;
     }
 

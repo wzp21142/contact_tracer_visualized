@@ -1,13 +1,11 @@
 package sample;
 
-import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -19,7 +17,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class Main extends Application implements Initializable {
+public class MainInterface implements Initializable {
     private static ChoiceBox dayBoxSelected;
     private static String ButtonName;
     private static String[] Provinces = "北京,天津,上海,重庆,河北,山西,辽宁,吉林,黑龙江,江苏,浙江,安徽,福建,江西,山东,河南,湖北,湖南,广东,海南,四川,贵州,云南,陕西,甘肃,青海,台湾,内蒙古,广西,西藏,宁夏,新疆,香港,澳门".split(",");
@@ -31,40 +29,18 @@ public class Main extends Application implements Initializable {
     private Text Text0, Text1, Text2, Text3, Text4;
     private Stage primaryStage;
     private AnchorPane rootLayout;
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     public static String getButtonName() {
         return ButtonName;
     }
 
-    @Override
-    public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("密接追踪器");
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("Main.fxml"));
-        try {
-            rootLayout = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        // Show the scene containing the root layout.
-        Scene scene = new Scene(rootLayout);
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("COVID-19.jpg")));
-        primaryStage.show();
-    }
+
 
 
 
     public void showPersonOverview(String Place_Name) {
         try {
             // Load person overview.
-            AnchorPane location = FXMLLoader.load(getClass().getResource("Floor_Status.fxml"));
+            AnchorPane location = FXMLLoader.load(getClass().getResource("/resources/Floor_Status.fxml"));
             Stage infoStage = new Stage();
             infoStage.setTitle(Place_Name + "信息");
             infoStage.setScene(new Scene(location));
@@ -78,7 +54,7 @@ public class Main extends Application implements Initializable {
     public void showChartOverview(String Place_Name) {
         try {
             // Load person overview.
-            AnchorPane location = FXMLLoader.load(getClass().getResource("chart.fxml"));
+            AnchorPane location = FXMLLoader.load(getClass().getResource("/resources/chart.fxml"));
             Stage chartStage = new Stage();
             chartStage.setTitle(Place_Name + "感染趋势");
             chartStage.setScene(new Scene(Chart.createContent()));
@@ -109,13 +85,17 @@ public class Main extends Application implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ArrayList list = new ArrayList();
+        //String path=System.getProperty("user.dir");
         for (int i = 1; i <= 31; i++) {
+            //File file = new File(path+"\\"+i + "日.txt");
             File file = new File(i + "日.txt");
             if (file.exists()) {
+                //System.out.println("!!");
                 list.add(file.getName().subSequence(0, 2));
                 dayBox.getItems().addAll(file.getName().subSequence(0, 2));
             }
         }
+
         String[] days = (String[]) list.toArray(new String[0]);
         dayBox.getSelectionModel().select(0);
         tracer_logic.readInfo(days[0]);
